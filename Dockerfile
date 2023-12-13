@@ -15,7 +15,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy
-WORKDIR /app
-COPY --from=build /app .
+WORKDIR /project
+COPY --from=build /project .
 USER $APP_UID
 ENTRYPOINT ["./aspnetapp"]
